@@ -1,3 +1,6 @@
+//* Consigna: Implementá sumUnique(nums) que reciba un array y devuelva la suma
+//* de los números únicos (ignora duplicados, ignora no-numéricos).
+
 function sumUnique(nums) {
   const no_repetidos = new Set();
 
