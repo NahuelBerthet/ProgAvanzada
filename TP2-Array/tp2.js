@@ -1,4 +1,4 @@
-//* Ejercicio 1: Crear un objeto literal para un dispositivo de red
+//! Ejercicio 1: Crear un objeto literal para un dispositivo de red
 const router = {
   modelo: "Modelo 1 ",
   marca: "TP-Link",
@@ -6,49 +6,25 @@ const router = {
   velocidad: "20 Mbps",
   soportawifi: true
 };
-
-//* Ejercicio 2: Array de dispositivos de red
+// console.log(router);
+//! Ejercicio 2: Array de dispositivos de red
 const dispositivosRed = [
-  {
-    tipo: "Router",
-    marca: "TP-Link",
-    modelo: "AX3000",
-    precio: 89.99,
-  },
-  {
-    tipo: "Switch",
-    marca: "Cisco",
-    modelo: "SG250-08",
-    precio: 129.99,
-  },
-  {
-    tipo: "Firewall",
-    marca: "Fortinet",
-    modelo: "FortiGate 40F",
-    precio: 349.0,
-  },
-  {
-    tipo: "Access Point",
-    marca: "Ubiquiti",
-    modelo: "UniFi UAP-AC-PRO",
-    precio: 139.0,
-  },
-  {
-    tipo: "Router",
-    marca: "Netgear",
-    modelo: "Nighthawk RAX50",
-    precio: 199.99,
-  },
+  { tipo: "Router", marca: "TP-Link", modelo: "AX3000", precio: 89.99},
+  { tipo: "Switch", marca: "Cisco", modelo: "SG250-08", precio: 129.99},
+  { tipo: "Firewall", marca: "Fortinet", modelo: "FortiGate 40F", precio: 349.0},
+  { tipo: "Access Point", marca: "Ubiquiti", modelo: "UniFi UAP-AC-PRO", precio: 139.0},
+  { tipo: "Router", marca: "Netgear", modelo: "Nighthawk RAX50", precio: 199.99},
 ];
+// console.log(dispositivosRed);
 
-//* Ejercicio 3: Filtrar dispositivos por marca.
+//! Ejercicio 3: Filtrar dispositivos por marca.
 
 const marcaEspecifica = dispositivosRed.filter(
   (dispositivo) => dispositivo.marca == "Netgear"
 );
 console.log('Dispositivo marca especifica: ',marcaEspecifica);
 
-//* Ejercicio 4: Mapear direcciones ip
+//! Ejercicio 4: Mapear direcciones ip
 
 const servidores = [
   { nombre: "Servidor Web", ip: "192.168.1.10", sistema: "Linux" },
@@ -61,7 +37,7 @@ const ips = servidores.map(servidor => servidor.ip);
 
 console.log('Filtro por ip: ', ips);
 
-//* Ejercicio 5: Filtrar y ordenar paquetes de datos.
+//! Ejercicio 5: Filtrar y ordenar paquetes de datos.
 
 const paquetesDatos = [
 { id: 1, origen: "192.168.1.5", destino: "192.168.1.10", tamaño: 1200, prioridad: 3 },
@@ -76,7 +52,7 @@ const paqFiltradosYOrdenados = paquetesDatos.filter(paquete => paquete.tamaño >
 console.log('Mayores a 1000 y ordenados: ',paqFiltradosYOrdenados);
 
 
-//* Ejercicio 6: Calcular estadisticas de red 
+//! Ejercicio 6: Calcular estadisticas de red 
 
 const traficoRed = {
   "08:00": 1250,
@@ -109,7 +85,7 @@ console.log("Total de datos transferidos:", totalDatos, "MB");
 console.log("Hora con mayor trafico:", horaMaxima, "con", maximoTrafico, "MB");
 
 
-//* Ejercicio 7: Analizar conexiones de red
+//! Ejercicio 7: Analizar conexiones de red
 
 const conexiones = [
   { id: 1, origen: "192.168.1.5", destino: "192.168.1.10", protocolo: "HTTP" },
@@ -121,9 +97,9 @@ const conexiones = [
   { id: 7, origen: "192.168.1.9", destino: "192.168.1.15", protocolo: "SSH" },
   { id: 8, origen: "192.168.1.4", destino: "192.168.1.11", protocolo: "HTTP" }
 ];
-
+//Crea un objeto para contar las conexiones por protocolo
 const conexionesPorProtocolo = {};
-
+// Tu código aquí (recorre el array y cuenta las conexiones)
 for (const conexion of conexiones) {
   const protocolo = conexion.protocolo;
 
@@ -136,7 +112,24 @@ for (const conexion of conexiones) {
 
 console.log("Conexiones por protocolo:", conexionesPorProtocolo);
 
-//* Ejercicio 8: Filtrar y transformar alertas de seguridad
+//! Ejercicio 8: Filtrar y transformar alertas de seguridad
+const alertas = [
+  { id: 1, nivel: "alto", mensaje: "Acceso no autorizado detectado", origen: "192.168.1.10", hora: "12:00" },
+  { id: 2, nivel: "medio", mensaje: "Uso elevado de CPU", origen: "192.168.1.20", hora: "17:45" },
+  { id: 3, nivel: "alto", mensaje: "Falta de recursos", origen: "10.0.0.5", hora: "20:30" },
+  { id: 4, nivel: "bajo", mensaje: "Dispositivo desconectado", origen: "192.168.1.15", hora: "02:15" }
+];
+
+const alertasAltas = alertas.filter(alerta => alerta.nivel === "alto");
+
+const mensajesAdministrador = alertasAltas.map(alerta => {
+  return `Alerta ALTA [${alerta.hora}]: ${alerta.mensaje} desde ${alerta.origen}`;
+});
+
+console.log("Alertas filtradas de nivel alto:", alertasAltas);
+console.log("Mensajes para el administrador:");
+mensajesAdministrador.forEach(msg => console.log(msg));
+
 
 const dispositivos = [
   { id: 1, nombre: "PC-Desarrollo", ip: "192.168.1.5", tipo: "Estación de trabajo" },
@@ -176,9 +169,7 @@ const informeActividad = conexionesActivas.map(conexion => {
 console.log("Informe de actividad de red:", informeActividad);
 
 
-//* Ejercicio 9: Combinar datos de dispositivos y conexiones
-// Combina información de dispositivos y conexiones para crear un informe
-// detallado de la actividad de red.
+//! Ejercicio 9: Combinar datos de dispositivos y conexiones
 
 const topologiaRed = {
 nodos: [
@@ -220,7 +211,17 @@ const nodosOrdenados = Object.entries(conexionesPorNodo)
 // ancho de banda)
 const sugerencias = [];
 // Tu código aquí
+nodosOrdenados.forEach(([id, cantidad]) => {
+  if (cantidad > 2) {
+    const nodo = topologiaRed.nodos.find(n => n.id === id);
+    sugerencias.push("El nodo", nodo.id , " tiene", cantidad, " de conexiones por lo que podria necesitar mas ancho de banda")
+  }
+});
+
 
 console.log("Conexiones por nodo:", conexionesPorNodo);
 console.log("Nodos ordenados por número de conexiones:", nodosOrdenados);
 console.log("Sugerencias de optimización:", sugerencias);
+
+//! Ejercicio 10: Analizar y optimizar topología de red
+
